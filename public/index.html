@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ruttoptimerare</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <section class="form">
+        <h1>Ruttoptimerare för lastbil</h1>
+        <label for="addresses">Adresser (en per rad):</label>
+        <textarea id="addresses" rows="8" placeholder="Göteborg Centralstation&#10;Kungsportsavenyen 1, Göteborg"></textarea>
+
+        <div class="times">
+          <div>
+            <label for="workStart">Starttid:</label>
+            <input type="time" id="workStart" value="06:00" />
+          </div>
+          <div>
+            <label for="workEnd">Sluttid:</label>
+            <input type="time" id="workEnd" value="15:00" />
+          </div>
+        </div>
+
+        <button id="runBtn">Kör!</button>
+      </section>
+
+      <section id="results" class="results hidden">
+        <h2>Optimerad rutt</h2>
+        <ol id="orderedList"></ol>
+        <p id="summary"></p>
+        <iframe id="mapFrame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </section>
+    </main>
+
+    <script src="script.js" type="module"></script>
+  </body>
+</html>

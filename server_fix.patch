@@ -1,0 +1,30 @@
+--- a/server.js
++++ b/server.js
+@@ -10,7 +10,8 @@
+ const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
+ 
+ if (!GOOGLE_API_KEY) {
+-  console.warn('⚠️  GOOGLE_API_KEY saknas i dina miljövariabler (.env) – geokodning och avståndsberäkning kommer att misslyckas.');
++  console.error('❌ GOOGLE_API_KEY saknas. Avslutar.');
++  process.exit(1);
+ }
+ 
+ app.use(cors());
+@@ -94,6 +95,7 @@
+         origins,
+         destinations,
+         mode: 'driving',
++        departure_time: 'now',
+         units: 'metric',
+         key: GOOGLE_API_KEY
+       }
+@@ -127,7 +129,8 @@
+     res.json({
+       ordered,
+       totalDistanceKm,
+-      totalDurationMin
++      totalDurationMin,
++      coordinates: orderIdx.map(i => coords[i]),
+     });
+   } catch (err) {
+     console.error(err);
